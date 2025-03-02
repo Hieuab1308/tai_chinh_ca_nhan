@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "308195757527",
+    "project_id": "btack-250c1",
+    "storage_bucket": "btack-250c1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308195757527:android:4f377ed078414ee5b20f92",
+        "android_client_info": {
+          "package_name": "com.example.thu_chi_ca_nhan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSNQqp7McxKvNoMAIFOlkjd8EuVmXuAYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

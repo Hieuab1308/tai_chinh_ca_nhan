@@ -1,10 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 class HeroCard extends StatelessWidget {
-  const HeroCard({
-    super.key,
+  HeroCard({
+    super.key, required this.userId,
   });
+  final String userId;
 
+  @override
+  Widget build(BuildContext context) {
+    final Stream<DocumentSnapshot> _usersStream =
+    FirebaseFirestore.instance.collection('users').doc(userId).snapshots();
+    return StreamBuilder<DocumentSnapshot>(
+      stream: _usersStream,
+      builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+        if(!snapshot.hasData || !snapshot.data!.exists){
+          return const Text("Document does not exits");
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+        var data = snapshot.data!.data() as Map<String, dynamic>;
+        return Cards(data:data);
+      },
+    );
+  }
+}
+
+class Cards extends StatelessWidget {
+  const Cards({
+    super.key,
+    required this.data,
+  });
+final Map data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +57,7 @@ class HeroCard extends StatelessWidget {
                       fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  "\$ 200000",
+                  "\$ ${data['remainingAmount']}",
                   style: TextStyle(
                       fontSize: 50,
                       color: Colors.white,
@@ -47,13 +78,13 @@ class HeroCard extends StatelessWidget {
             child: Row(
               children: [
                 CardOne(
-                  color: Colors.green,
+                  color: Colors.green, heading: 'Credit', amount: "${data['totalCredit']}",
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 CardOne(
-                  color: Colors.red,
+                  color: Colors.red, heading: 'Debit', amount: " ${data['totalDebit']}",
                 )
               ],
             ),
@@ -67,11 +98,12 @@ class HeroCard extends StatelessWidget {
 class CardOne extends StatelessWidget {
   const CardOne({
     super.key,
-    required this.color,
+    required this.color, required this.heading, required this.amount,
   });
 
   final Color color;
-
+  final String heading;
+  final String amount;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -87,11 +119,11 @@ class CardOne extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Income",
+                    heading,
                     style: TextStyle(color: color, fontSize: 16),
                   ),
                   Text(
-                      "\$ 20000",
+                      "\$ ${amount}",
                       style: TextStyle(color: color, fontSize: 24,fontWeight: FontWeight.w600)
                   )
                 ],
@@ -99,7 +131,10 @@ class CardOne extends StatelessWidget {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.arrow_upward,color: color,),
+                child: Icon(
+                  heading == "Credit"?
+                  Icons.arrow_upward_outlined: Icons.arrow_downward_outlined,
+                  color: color,),
               )
             ],
           ),

@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:thu_chi_ca_nhan/screens/login_screens.dart';
+import 'package:thu_chi_ca_nhan/widgets/add_transacetion_form.dart';
 import 'package:thu_chi_ca_nhan/widgets/transactions_cards.dart';
 
 import '../widgets/hero_card.dart';
@@ -27,11 +29,12 @@ class _HomeScreensState extends State<HomeScreens> {
       isLogoutLoader = false;
     });
   }
+  final userId = FirebaseAuth.instance.currentUser!.uid;
 
 _dialoBuilder(BuildContext context){
     return showDialog(context: context, builder: (context){
       return AlertDialog(
-        content: Text("data"),
+        content: AddTransacetionForm(),
       );
     });
 }
@@ -68,7 +71,7 @@ _dialoBuilder(BuildContext context){
       ),
       body: Column(
         children: [
-          HeroCard(),
+          HeroCard(userId: userId),
           TransactionsCard(),
         ],
       ),

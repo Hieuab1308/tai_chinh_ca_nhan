@@ -30,6 +30,9 @@ class _SignUpViewState extends State<SignUpView> {
         "email": _emailController.text,
         "phone": _phoneNumberController.text,
         "password": _passwordController.text,
+        'remainingAmount': 0,
+        'totalCredit': 0,
+        'totalDebit': 0,
       };
       await authservice.createUser(data, context);
 

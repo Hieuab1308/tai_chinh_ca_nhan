@@ -69,11 +69,13 @@ _dialoBuilder(BuildContext context){
           )
         ],
       ),
-      body: Column(
-        children: [
-          HeroCard(userId: userId),
-          TransactionsCard(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            HeroCard(userId: userId),
+            TransactionsCard(),
+          ],
+        ),
       ),
     );
   }

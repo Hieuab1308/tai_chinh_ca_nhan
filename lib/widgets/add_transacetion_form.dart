@@ -29,7 +29,7 @@ class _AddTransacetionFormState extends State<AddTransacetionForm> {
         isLoader = true;
       });
       final user = FirebaseAuth.instance.currentUser;
-      int timestamp = DateTime.now().microsecondsSinceEpoch;
+      int timestamp = DateTime.now().millisecondsSinceEpoch;
       var amount = int.parse(amountEditController.text);
       DateTime date = DateTime.now();
 
@@ -96,14 +96,14 @@ class _AddTransacetionFormState extends State<AddTransacetionForm> {
               controller: titleEditController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: appvalidator.isEmptyCheck,
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: InputDecoration(labelText: 'Tên'),
             ),
             TextFormField(
               controller: amountEditController,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: appvalidator.isEmptyCheck,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Amount'),
+              decoration: InputDecoration(labelText: 'số tiền'),
             ),
             CategoryDropdown(
               cattype: category,
@@ -119,11 +119,11 @@ class _AddTransacetionFormState extends State<AddTransacetionForm> {
                 value: 'credit',
                 items: [
                   DropdownMenuItem(
-                    child: Text('Credit'),
+                    child: Text('Thu nhập'),
                     value: 'credit',
                   ),
                   DropdownMenuItem(
-                    child: Text('Debit'),
+                    child: Text('Chi tiêu'),
                     value: 'debit',
                   ),
                 ],
@@ -145,7 +145,7 @@ class _AddTransacetionFormState extends State<AddTransacetionForm> {
                 },
                 child: isLoader
                     ? Center(child: CircularProgressIndicator())
-                    : Text("Add Transaction"))
+                    : Text("Save"))
           ],
         ),
       ),

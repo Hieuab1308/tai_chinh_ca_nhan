@@ -49,7 +49,7 @@ final Map data;
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Total Balance",
+                  "Tổng tài khoản",
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -78,13 +78,13 @@ final Map data;
             child: Row(
               children: [
                 CardOne(
-                  color: Colors.green, heading: 'Credit', amount: "${data['totalCredit']}",
+                  color: Colors.green, heading: 'Thu nhập', amount: "${data['totalCredit']}",
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 CardOne(
-                  color: Colors.red, heading: 'Debit', amount: " ${data['totalDebit']}",
+                  color: Colors.red, heading: 'Chi tiêu ', amount: " ${data['totalDebit']}",
                 )
               ],
             ),

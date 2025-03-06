@@ -17,7 +17,7 @@ class TransactionsCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Lịch sử giao dịch",
+                "Các giao dịch",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               )
             ],

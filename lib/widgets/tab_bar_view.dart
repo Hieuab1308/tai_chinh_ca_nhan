@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:thu_chi_ca_nhan/widgets/transaction_list.dart';
 
-class TypeTabBar extends StatefulWidget {
+class TypeTabBar extends StatelessWidget {
   const TypeTabBar({super.key, required this.category, required this.monthYear});
   final String category;
   final String monthYear;
 
-  @override
-  State<TypeTabBar> createState() => _TypeTabBarState();
-}
-
-class _TypeTabBarState extends State<TypeTabBar> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -28,13 +23,13 @@ class _TypeTabBarState extends State<TypeTabBar> {
               child: TabBarView(
                 children: [
                   TransactionList(
-                    category: widget.category, // Truy cập widget.category
-                    monthYear: widget.monthYear, // Truy cập widget.monthYear
+                    category: category, // Truy cập widget.category
+                    monthYear: monthYear, // Truy cập widget.monthYear
                     type: 'credit',
                   ),
                   TransactionList(
-                    category: widget.category,
-                    monthYear: widget.monthYear,
+                    category: category,
+                    monthYear: monthYear,
                     type: 'debit',
                   ),
                 ],

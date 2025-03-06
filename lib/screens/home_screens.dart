@@ -53,7 +53,7 @@ _dialoBuilder(BuildContext context){
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
         title: Text(
-          "Hello",
+          "hello",
           style: TextStyle(color: Colors.white),
         ),
         actions: [
@@ -74,6 +74,7 @@ _dialoBuilder(BuildContext context){
           children: [
             HeroCard(userId: userId),
             TransactionsCard(),
+            // RecentTransactionsList(),
           ],
         ),
       ),

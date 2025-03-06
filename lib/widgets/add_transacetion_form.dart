@@ -39,9 +39,13 @@ class _AddTransacetionFormState extends State<AddTransacetionForm> {
           .collection('users')
           .doc(user!.uid)
           .get();
-      int remainingAmount = userDoc['remainingAmount'];
-      int totalCredit = userDoc['totalCredit'];
-      int totalDebit = userDoc['totalDebit'];
+      double remainingAmount = userDoc['remainingAmount'];
+      double totalCredit = userDoc['totalCredit'];
+      double totalDebit = userDoc['totalDebit'];
+      // int remainingAmount = userDoc['remainingAmount'];
+      // int totalCredit = userDoc['totalCredit'];
+      // int totalDebit = userDoc['totalDebit'];
+
 
       if (type == 'credit') {
         remainingAmount += amount;

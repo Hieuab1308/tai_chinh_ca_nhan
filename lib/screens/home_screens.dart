@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:thu_chi_ca_nhan/screens/login_screens.dart';
@@ -7,7 +6,6 @@ import 'package:thu_chi_ca_nhan/widgets/transactions_cards.dart';
 
 import '../widgets/hero_card.dart';
 
-// prefer_const_constructors
 class HomeScreens extends StatefulWidget {
   const HomeScreens({super.key});
 
@@ -17,6 +15,26 @@ class HomeScreens extends StatefulWidget {
 
 class _HomeScreensState extends State<HomeScreens> {
   var isLogoutLoader = false;
+  String userName = ''; // Biến để lưu tên người dùng
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserName(); // Lấy tên người dùng khi màn hình được tạo
+  }
+
+  // Lấy tên người dùng từ FirebaseAuth (email hoặc username tùy thuộc vào bạn đã lưu gì)
+  _getUserName() async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    // Nếu người dùng đã đăng nhập
+    if (user != null) {
+      setState(() {
+        userName = user.displayName ?? user.email?.split('@')[0] ?? 'users'; // Lấy tên người dùng hoặc phần email trước dấu "@"
+      });
+    }
+  }
+
   logOut() async {
     setState(() {
       isLogoutLoader = true; // Cập nhật đúng trạng thái loading
@@ -29,31 +47,37 @@ class _HomeScreensState extends State<HomeScreens> {
       isLogoutLoader = false;
     });
   }
+
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
-_dialoBuilder(BuildContext context){
-    return showDialog(context: context, builder: (context){
-      return AlertDialog(
-        content: AddTransacetionForm(),
-      );
-    });
-}
+  _dialoBuilder(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: AddTransacetionForm(),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue.shade900,
-          onPressed: ((){
-            _dialoBuilder(context);
-          }),
-        child: Icon(Icons.add,
+        onPressed: (() {
+          _dialoBuilder(context);
+        }),
+        child: Icon(
+          Icons.add,
           color: Colors.white,
         ),
       ),
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
         title: Text(
-          "hello",
+          userName.isEmpty ? "Hello" : "Xin chào, $userName", // Hiển thị tên người dùng
           style: TextStyle(color: Colors.white),
         ),
         actions: [
@@ -81,5 +105,3 @@ _dialoBuilder(BuildContext context){
     );
   }
 }
-
-

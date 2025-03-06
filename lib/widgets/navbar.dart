@@ -29,6 +29,14 @@ class Navbar extends StatelessWidget {
           selectedIcon: Icon(Icons.explore, color: Colors.white),
           label: 'Transaction',
         ),
+        NavigationDestination(
+            icon: Icon(Icons.account_circle, size: 40,),
+            selectedIcon: Icon(Icons.account_circle, color: Colors.white),
+            label: 'User'),
+        NavigationDestination(
+            icon: Icon(Icons.settings, size: 40,),
+            selectedIcon: Icon(Icons.settings, color: Colors.white),
+            label: 'User'),
       ],
     );
   }

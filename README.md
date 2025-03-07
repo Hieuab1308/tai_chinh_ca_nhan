@@ -34,15 +34,6 @@
 📌 **FirestoreService**: Ghi/đọc dữ liệu từ Firebase Firestore.
 📌 **TransactionController**: Quản lý logic thêm/sửa/xóa giao dịch.
 
-```
-📂 lib/
- ├── 📂 models/           # Định nghĩa các model (User, Transaction)
- ├── 📂 services/         # Firebase, Authentication services
- ├── 📂 controllers/      # Logic xử lý dữ liệu
- ├── 📂 views/            # Màn hình UI (Home, Login, Add Transaction)
- ├── 📂 widgets/          # Các widget tái sử dụng
- ├── main.dart            # Điểm khởi đầu ứng dụng
-```
 
 ---
 

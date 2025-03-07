@@ -26,15 +26,6 @@
 
 ---
 
-
-## 📜 Kiến trúc hệ thống
-Ứng dụng sử dụng **Client-Server Architecture** với các thành phần chính:
-📌 **UI (Flutter)**: Giao diện người dùng.
-📌 **AuthService**: Xử lý đăng nhập, đăng ký, đăng xuất với Firebase Authentication.
-📌 **FirestoreService**: Ghi/đọc dữ liệu từ Firebase Firestore.
-📌 **TransactionController**: Quản lý logic thêm/sửa/xóa giao dịch.
-
-
 ---
 
 ## 📌 TODO & Hướng phát triển
